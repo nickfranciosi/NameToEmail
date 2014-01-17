@@ -36,6 +36,7 @@ $(document).ready(function(){
 
 						});
 						$person.html(newName);
+						$('#trigger').attr("disabled", "disabled");
 					}
 				}else{
 					//if there is a space remove it
