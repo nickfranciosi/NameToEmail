@@ -21,6 +21,8 @@ $(document).ready(function(){
 	var letters = $personName.split("");
 	var lettersLen = letters.length;
 	var newName = '';
+	var noSpaceName = $personName.replace(" ", "");
+
 
 	var i = 0;
 	function nameLoop(){
@@ -34,8 +36,14 @@ $(document).ready(function(){
 						nameLoop();
 					}else{
 						newName = letters.join("");
+						var href = 'mailto:' + noSpaceName + '@gmail.com'
 						newName += '<span class="red">@gmail.com</span>'
-						$person.html(newName)
+						console.log(href);
+						$person.wrap(function(){
+							return "<a href='" + href + "'></a>";
+
+						});
+						$person.html(newName);
 					}
 				}else{
 					letters.splice(i, 1);
