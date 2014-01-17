@@ -8,7 +8,7 @@
 
 <h1 id="person">Nick Franciosi</h1>
 
-<p id="trigger">contact</p>
+<button id="trigger">contact</button>
 
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -22,31 +22,34 @@ $(document).ready(function(){
 	var lettersLen = letters.length;
 	var newName = '';
 
-	// for(var i = 0; i < lettersLen; i++){
-	// 	letters[i] = '<span class="red">' + letters[i] + '</span>';
-	// 	newName = letters.join("");
-	// 	$person.html(newName).delay(50000);
-
-	// }
-
 	var i = 0;
 	function nameLoop(){
-	setTimeout(function(){
-			letters[i] = '<span class="red">' + letters[i] + '</span>';
-			newName = letters.join("");
-			$person.html(newName)
-			i++;
-			if(i < lettersLen){
-				nameLoop();
-			}
+		setTimeout(function(){
+				if(letters[i] != " "){
+					letters[i] = '<span class="red">' + letters[i] + '</span>';
+					newName = letters.join("");
+					$person.html(newName)
+					i++;
+					if(i < lettersLen){
+						nameLoop();
+					}else{
+						newName = letters.join("");
+						newName += '<span class="red">@gmail.com</span>'
+						$person.html(newName)
+					}
+				}else{
+					letters.splice(i, 1);
+					lettersLen--;
+					nameLoop();
+				}
 
 		},500)
 	}
-	nameLoop();
 	
-	// var newName = letters.join("");
-	// $person.html(newName);
 
+	$('#trigger').click(nameLoop);
+	
+	
 });
 
 
