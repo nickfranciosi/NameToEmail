@@ -6,9 +6,48 @@
 </head>
 <body>
 
+<h1 id="person">Nick Franciosi</h1>
+
+<p id="trigger">contact</p>
+
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
+
+$(document).ready(function(){
+	var $person = $('#person');
+	var $personName = $('#person').text();
+	var nameLength = $personName.length;
+	var letters = $personName.split("");
+	var lettersLen = letters.length;
+	var newName = '';
+
+	// for(var i = 0; i < lettersLen; i++){
+	// 	letters[i] = '<span class="red">' + letters[i] + '</span>';
+	// 	newName = letters.join("");
+	// 	$person.html(newName).delay(50000);
+
+	// }
+
+	var i = 0;
+	function nameLoop(){
+	setTimeout(function(){
+			letters[i] = '<span class="red">' + letters[i] + '</span>';
+			newName = letters.join("");
+			$person.html(newName)
+			i++;
+			if(i < lettersLen){
+				nameLoop();
+			}
+
+		},500)
+	}
+	nameLoop();
+	
+	// var newName = letters.join("");
+	// $person.html(newName);
+
+});
 
 
 
